@@ -1,0 +1,35 @@
+version: '3.9'
+
+
+services:
+#  database:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: Guryanova
+#    volumes:
+#      - ./pgdata:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+
+
+  airport_service:
+    restart: on-failure
+    container_name: airport_service
+    build: ./airport_service/
+    ports:
+      - "8000:80"
+#    depends_on:
+#      - database
+
+  status_service:
+    restart: on-failure
+    container_name: status_service
+    build: status_service/
+    ports:
+      - "8001:80"
+#    depends_on:
+#      - database
+
