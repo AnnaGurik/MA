@@ -31,10 +31,8 @@ async def service_alive():
 
 @app.post("/add_plane")
 async def add_plane(plane: PlaneModel, db: db_dependency):
-    plane_db = Plane(airplane_name=PlaneModel.airplane_name,
-                     num_seats=PlaneModel.num_seats,
-                     status=PlaneModel.status,
-                     manufacture_date=PlaneModel.manufacture_date)
+    plane_db = Plane(airplane_name=plane.airplane_name,
+                     num_seats=plane.num_seats)
     try:
         db.add(plane_db)
         db.commit()
@@ -45,7 +43,7 @@ async def add_plane(plane: PlaneModel, db: db_dependency):
 
 
 @app.get("/get_planes")
-async def get_planes(username: str, db: db_dependency):
+async def get_planes(db: db_dependency):
     try:
         result = db.query(Plane).filter().all()
         return result

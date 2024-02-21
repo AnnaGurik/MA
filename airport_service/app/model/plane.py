@@ -8,6 +8,6 @@ class PlaneModel(BaseModel):
 
     id: Optional[int] = None
     airplane_name: str
-    num_seats: str
-    status: str
-    manufacture_date: str
+    num_seats: int
+    status: Optional[str] = None
+    manufacture_date: Optional[datetime] = None
