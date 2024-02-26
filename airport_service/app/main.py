@@ -54,7 +54,7 @@ async def get_planes(db: db_dependency):
 @app.get("/get_plane_by_id")
 async def get_plane_by_id(plane_id: int, db: db_dependency):
     try:
-        result = db.query(Plane).filter(Plane.id==plane_id).all()
+        result = db.query(Plane).filter(Plane.id == plane_id).first()
         return result
     except Exception as e:
         raise HTTPException(status_code=404, detail="Plane not found")
@@ -63,10 +63,11 @@ async def get_plane_by_id(plane_id: int, db: db_dependency):
 @app.get("/get_planes_by_name")
 async def get_planes_by_name(plane_name: str, db: db_dependency):
     try:
-        result = db.query(Plane).filter(Plane.name==plane_name).all()
+        result = db.query(Plane).filter(Plane.airplane_name == plane_name).first()
         return result
     except Exception as e:
         raise HTTPException(status_code=404, detail="Messages not found")
+
 
 @app.delete("/delete_plane")
 async def delete_plane(plane_id: int, db: db_dependency):
