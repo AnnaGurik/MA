@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
-URL = 'postgresql://secUREusER:StrongEnoughPassword)@51.250.26.59:5432/query'
+URL = 'postgresql://postgres:password@db/Gurk'
 
 engine = create_engine(URL)
 
